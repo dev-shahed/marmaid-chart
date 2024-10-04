@@ -1,0 +1,12 @@
+# dependencies
+/node_modules
+/server/node_modules
+/package-lock.json
+/yarn.lock
+
+# testing
+/coverage
+
+# environment variables
+.env
+.env.test
