@@ -1,19 +1,26 @@
 {
-  "name": "y",
+  "name": "mermaid-chart-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Node.js app for generating Mermaid charts using Groq API and Express.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
-  "author": "",
+  "author": "Your Name",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.7",
     "cors": "^2.8.5",
+    "dompurify": "^3.1.7",
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
-    "groq-sdk": "^0.7.0"
+    "groq-sdk": "^0.7.0",
+    "mermaid": "^11.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
+  
 }
