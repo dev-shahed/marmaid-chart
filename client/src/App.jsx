@@ -51,7 +51,7 @@ const App = () => {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Mermaid Chart Example
+        Mermaid Chart Generator
       </h1>
       <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
         <input

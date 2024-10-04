@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://marmaid-chart.vercel.app',
+        target: 'https://marmaid-chart-gen.vercel.app',
         changeOrigin: true,
       },
     },
