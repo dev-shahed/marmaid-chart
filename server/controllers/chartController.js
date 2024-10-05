@@ -16,8 +16,8 @@ async function getMermaidChartCompletion(prompt) {
       ],
       model: 'llama3-8b-8192',
     });
-
-    return response.choices[0]?.message?.content || 'No chart generated.';
+    const chartContent = response.choices[0]?.message?.content.replace(/style\s*.+;\n/g, '');
+    return chartContent || 'No chart generated.';
   } catch (error) {
     console.error('Error generating Mermaid chart:', error);
     throw error;
