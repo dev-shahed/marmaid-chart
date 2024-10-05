@@ -9,10 +9,9 @@ async function getMermaidChartCompletion(prompt) {
       messages: [
         {
           role: 'user',
-          content: `Generate a valid and 100% correct Mermaid diagram for the following prompt: "${prompt}". 
-                    Ensure the output contains only the necessary Mermaid syntax, is properly structured, and contains no syntax errors. 
-                    Avoid extra descriptions, invalid characters, or incorrect syntax. 
-                    The Mermaid diagram must be ready for direct rendering in a React app, ensuring smooth visualization without additional changes.`,
+          content: `Generate a valid Mermaid diagram based on the following prompt: "${prompt}". 
+                    Ensure that the syntax is correct and properly structured without syntax error, without any extra descriptions or explanations. 
+                    Only provide a simple, clean, and valid Mermaid graph. Avoid invalid characters, extra arrows, or incorrect syntax so that the Mermaid graph can be easily rendered.`,
         },
       ],
       model: 'llama3-8b-8192',
