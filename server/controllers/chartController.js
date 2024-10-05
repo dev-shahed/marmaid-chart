@@ -27,13 +27,6 @@ async function getMermaidChartCompletion(prompt) {
       .replace(/\s+$/gm, '') // Remove trailing whitespace
       .replace(/\n{2,}/g, '\n'); // Remove extra newlines
 
-    // Check for valid Mermaid syntax (optional)
-    const validMermaidKeywords =
-      /^(graph|sequenceDiagram|classDiagram|stateDiagram|gantt|journey|pie|erDiagram|%%{init: {.*}})\s*$/gm;
-    if (!validMermaidKeywords.test(mermaidGraph)) {
-      throw new Error('Invalid Mermaid syntax detected.');
-    }
-
     // Return cleaned Mermaid graph or message
     return mermaidGraph || 'No chart generated.';
   } catch (error) {
