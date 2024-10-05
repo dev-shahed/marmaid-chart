@@ -9,28 +9,17 @@ async function getMermaidChartCompletion(prompt) {
       messages: [
         {
           role: 'user',
-          content: `Generate a valid Mermaid diagram based on the following prompt: "${prompt}". 
-                    Ensure that the syntax is correct and properly structured without syntax error, without any extra descriptions or explanations. 
-                    Only provide a simple, clean, and valid Mermaid graph. Avoid invalid characters, extra arrows, or incorrect syntax so that the Mermaid graph can be easily rendered.`,
+          content: `Generate a valid Mermaid "graph TD" diagram based on the following prompt: "${prompt}". 
+                    Ensure that the syntax is correct and properly structured, without any extra descriptions or explanations. 
+                    Only provide a simple, clean, and valid Mermaid graph. Avoid invalid characters, extra arrows, or incorrect syntax.`,
         },
       ],
       model: 'llama3-8b-8192',
     });
 
-    // Safely access the content
-    let mermaidGraph = response.choices[0]?.message?.content || '';
-
-    // Clean up the Mermaid content
-    mermaidGraph = mermaidGraph
-      .replace(/style\s*.+;\n/g, '') // Remove 'style' lines
-      .replace(/^\s*[\r\n]/gm, '') // Remove empty lines
-      .replace(/\s+$/gm, '') // Remove trailing whitespace
-      .replace(/\n{2,}/g, '\n'); // Remove extra newlines
-
-    // Return cleaned Mermaid graph or message
-    return mermaidGraph || 'No chart generated.';
+    return response.choices[0]?.message?.content || 'No chart generated.';
   } catch (error) {
-    console.error('Error generating Mermaid graph:', error);
+    console.error('Error generating Mermaid chart:', error);
     throw error;
   }
 }
