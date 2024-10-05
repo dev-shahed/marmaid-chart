@@ -17,9 +17,27 @@ async function getMermaidChartCompletion(prompt) {
       model: 'llama3-8b-8192',
     });
 
-    return response.choices[0]?.message?.content || 'No chart generated.';
+    // Safely access the content
+    let mermaidGraph = response.choices[0]?.message?.content || '';
+
+    // Clean up the Mermaid content
+    mermaidGraph = mermaidGraph
+      .replace(/style\s*.+;\n/g, '') // Remove 'style' lines
+      .replace(/^\s*[\r\n]/gm, '') // Remove empty lines
+      .replace(/\s+$/gm, '') // Remove trailing whitespace
+      .replace(/\n{2,}/g, '\n'); // Remove extra newlines
+
+    // Check for valid Mermaid syntax (optional)
+    const validMermaidKeywords =
+      /^(graph|sequenceDiagram|classDiagram|stateDiagram|gantt|journey|pie|erDiagram|%%{init: {.*}})\s*$/gm;
+    if (!validMermaidKeywords.test(mermaidGraph)) {
+      throw new Error('Invalid Mermaid syntax detected.');
+    }
+
+    // Return cleaned Mermaid graph or message
+    return mermaidGraph || 'No chart generated.';
   } catch (error) {
-    console.error('Error generating Mermaid chart:', error);
+    console.error('Error generating Mermaid graph:', error);
     throw error;
   }
 }
